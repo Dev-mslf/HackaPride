@@ -8,28 +8,21 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      padding: 40px;
-      background-color: #f0f0f0;
+      padding: 30px;
+      background-color: #000080;
     }
     .container {
       background: white;
-      padding: 30px;
+      padding: 40px;
       border-radius: 10px;
-      max-width: 600px;
+      max-width: 500px;
       margin: auto;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    .word-display {
-      font-size: 36px;
-      letter-spacing: 15px;
-      margin-bottom: 20px;
-    }
     input[type="text"] {
       padding: 10px;
-      width: 50px;
-      font-size: 24px;
-      text-align: center;
-      text-transform: uppercase;
+      width: 80%;
+      font-size: 16px;
     }
     button {
       padding: 10px 20px;
@@ -43,84 +36,63 @@
     .success {
       color: green;
     }
-    .error-msg {
+    .error {
       color: red;
-      margin-top: 10px;
-      height: 20px;
     }
   </style>
 </head>
 <body>
 
   <div class="container" id="game">
-    <h2><p>Originado em tempos de tensão e silêncio,
-veio do Leste sem precisar falar.</p>
-  <p>Suas peças caem do alto,
-e só quem sabe organizar pode vencer.</p>
-  <p>Ele não tem rosto, não tem voz,
-mas exige raciocínio veloz.</p>
-  <p>Quanto mais você encaixa, mais difícil fica.
+    <h3>Originado em tempos de tensão e silêncio,
+veio do Leste sem precisar falar.</h3>
+  <h3>Suas peças caem do alto,
+e só quem sabe organizar pode vencer.</h3>
+  <h3>Ele não tem rosto, não tem voz,
+mas exige raciocínio veloz.</h3>
+
+ <h3><p>Quanto mais você encaixa, mais difícil fica.
 E quando não há mais espaço...</p>
-  <p>Qual é o jogo?</p></h2>
-    
-    <div class="word-display" id="wordDisplay"></div>
-    <input type="text" id="letterInput" maxlength="1" />
+ 
+<p>Qual é o jogo?</p></h3>
+
+    <input type="text" id="guess" placeholder="Digite sua resposta aqui" />
     <br>
-    <button onclick="checkLetter()">Tentar letra</button>
-    <div class="error-msg" id="errorMsg"></div>
+    <button onclick="checkAnswer()">Responder</button>
   </div>
 
   <div class="container hidden" id="success">
-    <h2 class="success">🎉 Resposta certa!</h2>
+    <h2 class="success">🎉 Você acertou!</h2>
+    <p>Parabéns! A resposta está correta.</p>
+  </div>
 
+  <div class="container hidden" id="error">
+    <h2 class="error">❌ Você errou!</h2>
+    <p>Tente novamente.</p>
+    <button onclick="tryAgain()">Tentar novamente</button>
   </div>
 
   <script>
-    const correctWord = "tetris";
-    let guessedLetters = Array(correctWord.length).fill("_");
+    const correctAnswer = "tetris"; // resposta correta
 
-    const wordDisplay = document.getElementById("wordDisplay");
-    const letterInput = document.getElementById("letterInput");
-    const errorMsg = document.getElementById("errorMsg");
-
-    function updateDisplay() {
-      wordDisplay.textContent = guessedLetters.join(" ");
-    }
-
-    function checkLetter() {
-      const input = letterInput.value.toUpperCase();
-      letterInput.value = "";
-
-      if (input === "" || input.length !== 1 || !/^[A-ZÁÉÍÓÚÂÊÔÃÕÇ]$/.test(input)) {
-        errorMsg.textContent = "Digite apenas uma letra válida.";
-        return;
-      }
-
-      let found = false;
-      for (let i = 0; i < correctWord.length; i++) {
-        if (correctWord[i] === input && guessedLetters[i] === "_") {
-          guessedLetters[i] = input;
-          found = true;
-        }
-      }
-
-      if (!found) {
-        errorMsg.textContent = `A letra "${input}" não está na palavra.`;
-      } else {
-        errorMsg.textContent = "";
-      }
-
-      updateDisplay();
-
-      if (!guessedLetters.includes("_")) {
+    function checkAnswer() {
+      const userGuess = document.getElementById("guess").value.trim().toLowerCase();
+      if (userGuess === correctAnswer) {
         document.getElementById("game").classList.add("hidden");
         document.getElementById("success").classList.remove("hidden");
+      } else {
+        document.getElementById("game").classList.add("hidden");
+        document.getElementById("error").classList.remove("hidden");
       }
     }
 
-    // Inicializa o jogo
-    updateDisplay();
+    function tryAgain() {
+      document.getElementById("error").classList.add("hidden");
+      document.getElementById("game").classList.remove("hidden");
+      document.getElementById("guess").value = "";
+    }
   </script>
 
 </body>
 </html>
+
