@@ -28,13 +28,24 @@
       text-align: center;
     }
 
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin: 0 auto;
-      display: block;
-      cursor: pointer;
-    }
+   button {
+  padding: 12px 24px;
+  font-size: 16px;
+  margin: 20px auto 0;
+  display: block;
+  cursor: pointer;
+  background-color: #4CAF50;        /* verde suave */
+  color: white;                      /* texto branco */
+  border: none;                      /* sem borda */
+  border-radius: 30px;               /* borda redonda */
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #45a049;         /* verde um pouco mais escuro no hover */
+  transform: scale(1.05);            /* leve aumento ao passar o mouse */
+}
+
 
     .hidden {
       display: none;
@@ -56,12 +67,13 @@
 <body>
 
   <div id="game">
-    <h3>"Originado em tempos de tensão e silêncio, veio do Leste sem precisar falar."</h3>
+    <h3>"Originado em tempos de tensão e silêncio, veio do Leste sem precisar falar.</h3>
     <h3>Suas peças caem do alto, e só quem sabe organizar pode vencer.</h3>
     <h3>Ele não tem rosto, não tem voz, mas exige raciocínio veloz.</h3>
-    <h3>Quanto mais você encaixa, mais difícil fica.<br>E quando não há mais espaço..."</h3>
+    <h3>Quanto mais você encaixa, mais difícil fica.</h3>
+    <h3>E quando não há mais espaço..."</h3>
     <br>
-    <h2>QUAL É O JOGO?</h2>
+    <h3>QUAL É O JOGO?</h3>
 
     <input type="text" id="guess" placeholder="Digite sua resposta aqui" />
     <button onclick="checkAnswer()">Responder</button>
