@@ -3,36 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>???</title>
+  <title>Jogo do Enigma</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;  /* Centraliza horizontalmente */
       align-items: center;      /* Centraliza verticalmente */
-      min-height: 100vh;        /* Garante altura mínima igual à tela inteira */
-      margin: 0;   
+      flex-direction: column;   /* Alinha os elementos verticalmente */
+      min-height: 100vh;
+      margin: 0;
       background-color: white;
       text-align: center;
+      padding: 20px;
     }
-    .container {
-      background: white;
-      padding: 40px;
-      border-radius: 5px;
-      max-width: 500px;
-      margin: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      text-align: center;
-    }
+
     input[type="text"] {
       padding: 10px;
       width: 80%;
+      max-width: 400px;
       font-size: 16px;
       display: block;
-      margin: 10px auto;
+      margin: 20px auto;
       text-align: center;
     }
-    
+
     button {
       padding: 10px 20px;
       font-size: 16px;
@@ -44,47 +39,47 @@
     .hidden {
       display: none;
     }
+
     .success {
       color: green;
     }
+
     .error {
       color: red;
+    }
+
+    h3 {
+      margin: 10px 0;
     }
   </style>
 </head>
 <body>
 
-  <div class="container" id="game">
-    <h3>"Originado em tempos de tensão e silêncio,
-veio do Leste sem precisar falar.</h3>
-  <h3>Suas peças caem do alto,
-e só quem sabe organizar pode vencer.</h3>
-  <h3>Ele não tem rosto, não tem voz,
-mas exige raciocínio veloz.</h3>
-
- <h3><p>Quanto mais você encaixa, mais difícil fica.</p>
-<p>E quando não há mais espaço..."</p>
-<br>
-<p>QUAL É O JOGO?</p></h3>
+  <div id="game">
+    <h3>"Originado em tempos de tensão e silêncio, veio do Leste sem precisar falar."</h3>
+    <h3>Suas peças caem do alto, e só quem sabe organizar pode vencer.</h3>
+    <h3>Ele não tem rosto, não tem voz, mas exige raciocínio veloz.</h3>
+    <h3>Quanto mais você encaixa, mais difícil fica.<br>E quando não há mais espaço..."</h3>
+    <br>
+    <h2>QUAL É O JOGO?</h2>
 
     <input type="text" id="guess" placeholder="Digite sua resposta aqui" />
-    <br>
     <button onclick="checkAnswer()">Responder</button>
   </div>
 
-  <div class="container hidden" id="success">
+  <div id="success" class="hidden">
     <h2 class="success">🎉 Você acertou!</h2>
     <p>Parabéns! A resposta está correta.</p>
   </div>
 
-  <div class="container hidden" id="error">
+  <div id="error" class="hidden">
     <h2 class="error">❌ Você errou!</h2>
     <p>Tente novamente.</p>
     <button onclick="tryAgain()">Tentar novamente</button>
   </div>
 
   <script>
-    const correctAnswer = "tetris"; // resposta correta
+    const correctAnswer = "tetris";
 
     function checkAnswer() {
       const userGuess = document.getElementById("guess").value.trim().toLowerCase();
