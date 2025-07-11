@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jogo de Adivinha</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      background-color: #f0f0f0;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 80%;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+    .hidden {
+      display: none;
+    }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="game">
+    <h2>Dica: É o maior planeta do sistema solar</h2>
+    <input type="text" id="guess" placeholder="Digite sua resposta aqui" />
+    <br>
+    <button onclick="checkAnswer()">Responder</button>
+  </div>
+
+  <div class="container hidden" id="success">
+    <h2 class="success">🎉 Você acertou!</h2>
+    <p>Parabéns! A resposta está correta.</p>
+  </div>
+
+  <div class="container hidden" id="error">
+    <h2 class="error">❌ Você errou!</h2>
+    <p>Tente novamente.</p>
+    <button onclick="tryAgain()">Tentar novamente</button>
+  </div>
+
+  <script>
+    const correctAnswer = "júpiter"; // resposta correta
+
+    function checkAnswer() {
+      const userGuess = document.getElementById("guess").value.trim().toLowerCase();
+      if (userGuess === correctAnswer) {
+        document.getElementById("game").classList.add("hidden");
+        document.getElementById("success").classList.remove("hidden");
+      } else {
+        document.getElementById("game").classList.add("hidden");
+        document.getElementById("error").classList.remove("hidden");
+      }
+    }
+
+    function tryAgain() {
+      document.getElementById("error").classList.add("hidden");
+      document.getElementById("game").classList.remove("hidden");
+      document.getElementById("guess").value = "";
+    }
+  </script>
+
+</body>
+</html>
