@@ -44,7 +44,18 @@
 <body>
 
   <div class="container" id="game">
-    <h2>Dica: É o maior planeta do sistema solar</h2>
+    <h2>Originado em tempos de tensão e silêncio,
+veio do Leste sem precisar falar.</h2>
+  <h2>Suas peças caem do alto,
+e só quem sabe organizar pode vencer.</h2>
+  <h2>Ele não tem rosto, não tem voz,
+mas exige raciocínio veloz.</h2>
+
+ <h2><p>Quanto mais você encaixa, mais difícil fica.
+E quando não há mais espaço...</p>
+ 
+<p>Qual é o jogo?</p></h2>
+
     <input type="text" id="guess" placeholder="Digite sua resposta aqui" />
     <br>
     <button onclick="checkAnswer()">Responder</button>
@@ -62,7 +73,7 @@
   </div>
 
   <script>
-    const correctAnswer = "júpiter"; // resposta correta
+    const correctAnswer = "tetris"; // resposta correta
 
     function checkAnswer() {
       const userGuess = document.getElementById("guess").value.trim().toLowerCase();
